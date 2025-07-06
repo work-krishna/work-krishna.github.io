@@ -2,156 +2,1749 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <title>My Portfolio</title>
-    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Krishna Kumar Sah - Embedded Engineer & IoT Specialist</title>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: 'Roboto', sans-serif;
-            margin: 0;
-            background: #f4f4f4;
-            color: #222;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            overflow-x: hidden;
         }
-        header {
-            background: #222;
-            color: #fff;
-            padding: 2rem 0;
-            text-align: center;
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 0;
+            transition: all 0.3s ease;
         }
-        header h1 {
-            margin: 0;
-            font-size: 2.5rem;
-            letter-spacing: 2px;
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
         }
-        header p {
-            margin-top: 0.5rem;
-            font-size: 1.2rem;
-            color: #bbb;
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #667eea;
         }
-        nav {
-            background: #333;
-            text-align: center;
-            padding: 0.5rem 0;
-        }
-        nav a {
-            color: #fff;
-            text-decoration: none;
-            margin: 0 1rem;
-            font-weight: 500;
-            transition: color 0.2s;
-        }
-        nav a:hover {
-            color: #ffd700;
-        }
-        .container {
-            max-width: 1000px;
-            margin: 2rem auto;
-            padding: 0 1rem;
-        }
-        .section-title {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-            border-left: 4px solid #ffd700;
-            padding-left: 0.5rem;
-        }
-        .projects {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+
+        .nav-links {
+            display: flex;
+            list-style: none;
             gap: 2rem;
         }
-        .project-card {
-            background: #fff;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.07);
-            padding: 1.5rem;
-            transition: transform 0.2s;
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s ease;
         }
-        .project-card:hover {
-            transform: translateY(-5px) scale(1.02);
+
+        .nav-links a:hover {
+            color: #667eea;
         }
-        .project-card h3 {
-            margin-top: 0;
-            color: #222;
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
         }
-        .project-card p {
+
+        .hero-content {
+            max-width: 800px;
+            padding: 2rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .profile-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            border: 5px solid white;
+            margin: 0 auto 2rem;
+            background: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            color: #666;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            animation: slideInLeft 1s ease 0.2s both;
+        }
+
+        .hero h2 {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            animation: slideInRight 1s ease 0.4s both;
+        }
+
+        .contact-quick {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-quick span {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: white;
+            color: #667eea;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            animation: fadeInUp 1s ease 0.6s both;
+            margin: 0 1rem;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        /* Main Content */
+        .main-content {
+            background: white;
+            min-height: 100vh;
+        }
+
+        .section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section h2 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: #333;
+            position: relative;
+        }
+
+        .section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 3px;
+            background: #667eea;
+        }
+
+        /* About Section */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .education-section {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 15px;
+            margin-top: 2rem;
+        }
+
+        .education-item {
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background: white;
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+        }
+
+        .education-date {
+            color: #667eea;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        .education-degree {
+            font-weight: bold;
+            margin: 0.5rem 0;
+        }
+
+        .education-institution {
+            color: #666;
+        }
+
+        /* Skills Section */
+        .skills-section {
+            background: #f8f9fa;
+            padding: 5rem 2rem;
+            margin: 0;
+            max-width: 100%;
+        }
+
+        .skills-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .skill-category {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            transition: transform 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .skill-category:hover {
+            transform: translateY(-5px);
+        }
+
+        .skill-category h3 {
+            color: #667eea;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .skill-list {
+            line-height: 1.8;
             color: #555;
         }
-        .project-card a {
-            display: inline-block;
-            margin-top: 0.5rem;
-            color: #222;
-            background: #ffd700;
-            padding: 0.4rem 1rem;
-            border-radius: 4px;
-            text-decoration: none;
+
+        /* Experience Section */
+        .experience-timeline {
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .experience-timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: #667eea;
+        }
+
+        .experience-item {
+            position: relative;
+            margin-bottom: 3rem;
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .experience-item:hover {
+            transform: translateX(10px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .experience-item::before {
+            content: '';
+            position: absolute;
+            left: -2.5rem;
+            top: 2rem;
+            width: 12px;
+            height: 12px;
+            background: #667eea;
+            border-radius: 50%;
+            border: 3px solid white;
+        }
+
+        .experience-date {
+            color: #667eea;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .experience-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .experience-company {
+            color: #666;
+            margin-bottom: 1rem;
+            font-style: italic;
+        }
+
+        .experience-description {
+            margin-bottom: 1rem;
+        }
+
+        .responsibilities {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .responsibilities li {
+            padding: 0.3rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .responsibilities li::before {
+            content: "▶";
+            position: absolute;
+            left: 0;
+            color: #667eea;
+        }
+
+        /* Projects Section */
+        .projects-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .project-categories {
+            margin-bottom: 3rem;
+        }
+
+        .category-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .category-tab {
+            padding: 0.8rem 1.5rem;
+            background: #f8f9fa;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
             font-weight: 500;
-            transition: background 0.2s;
         }
-        .project-card a:hover {
-            background: #e6c200;
+
+        .category-tab.active {
+            background: #667eea;
+            color: white;
         }
-        footer {
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .project-image {
+            height: 200px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 0.9rem;
             text-align: center;
-            padding: 2rem 0 1rem 0;
-            color: #888;
+            padding: 1rem;
+        }
+
+        .project-content {
+            padding: 1.5rem;
+        }
+
+        .project-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        .project-description {
+            color: #666;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tech-tag {
+            background: #667eea;
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+        }
+
+        /* Contact Section */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .contact-info {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 15px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
             font-size: 1rem;
         }
-        @media (max-width: 600px) {
-            .section-title {
-                font-size: 1.3rem;
-            }
-            header h1 {
-                font-size: 1.5rem;
-            }
+
+        .contact-item i {
+            margin-right: 1rem;
+            color: #667eea;
+            width: 20px;
+        }
+
+        .contact-links {
+            margin-top: 2rem;
+        }
+
+        .contact-links a {
+            display: inline-block;
+            margin: 0.5rem 1rem 0.5rem 0;
+            padding: 0.5rem 1rem;
+            background: #667eea;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+
+        .contact-links a:hover {
+            background: #5a6fd8;
+        }
+
+        .contact-form {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            padding: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .submit-btn {
+            background: #667eea;
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            background: #5a6fd8;
+        }
+
+        /* Modal for Projects */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.8);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 2% auto;
+            padding: 2rem;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 900px;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            animation: modalSlideIn 0.3s ease;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            position: absolute;
+            right: 1rem;
+            top: 1rem;
+        }
+
+        .close:hover {
+            color: #000;
+        }
+
+        .modal-project-title {
+            font-size: 2rem;
+            color: #667eea;
+            margin-bottom: 1rem;
+        }
+
+        .modal-media-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .media-placeholder {
+            height: 200px;
+            background: #f0f0f0;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            border: 2px dashed #ccc;
+            text-align: center;
+            padding: 1rem;
+        }
+
+        /* Progress Bar */
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background: #667eea;
+            z-index: 1001;
+            transition: width 0.1s ease;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideInLeft {
+            from { opacity: 0; transform: translateX(-50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes slideInRight {
+            from { opacity: 0; transform: translateX(50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes modalSlideIn {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .hero h1 { font-size: 2rem; }
+            .about-grid { grid-template-columns: 1fr; }
+            .contact-grid { grid-template-columns: 1fr; }
+            .projects-grid { grid-template-columns: 1fr; }
+            .skills-grid { grid-template-columns: 1fr; }
+            .contact-quick { flex-direction: column; gap: 0.5rem; }
         }
     </style>
 </head>
 <body>
-    <header>
-        <h1>Krishna's Portfolio</h1>
-        <p>Web Developer &amp; Programmer</p>
-    </header>
-    <nav>
-        <a href="#about">About</a>
-        <a href="#projects">Projects</a>
-        <a href="#contact">Contact</a>
+    <!-- Progress Bar -->
+    <div class="progress-bar" id="progressBar"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="logo">Krishna K. Sah</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
     </nav>
-    <div class="container">
-        <section id="about">
-            <h2 class="section-title">About Me</h2>
-            <p>
-                Hi! I'm Krishna, a passionate web developer with experience in building modern, responsive websites and web applications. I love solving problems and learning new technologies.
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <div class="profile-image">
+                [Profile Photo Placeholder]
+            </div>
+            <h1>Krishna Kumar Sah</h1>
+            <h2>CTO | Embedded Engineer | IoT Specialist</h2>
+            <div class="contact-quick">
+                <span>📍 Lalitpur, Nepal</span>
+                <span>📱 (+977) 9843108024</span>
+                <span>✉️ work.krishnasah@gmail.com</span>
+            </div>
+            <p style="font-size: 1.1rem; margin-bottom: 2rem; opacity: 0.9;">
+                Self-motivated, adaptable, and ambitious Electrical and Electronics Engineer 
+                with a strong drive for productivity, seeking to further my career in the IoT field.
             </p>
-        </section>
-        <section id="projects">
-            <h2 class="section-title">Projects</h2>
-            <div class="projects">
-                <div class="project-card">
-                    <h3>Personal Blog</h3>
-                    <p>A clean and minimal blog platform built with HTML, CSS, and JavaScript.</p>
-                    <a href="#">View Project</a>
+            <a href="#about" class="cta-button">Explore My Work</a>
+            <a href="#contact" class="cta-button">Get In Touch</a>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- About Section -->
+        <section id="about" class="section">
+            <h2>About Me</h2>
+            <div class="about-grid">
+                <div class="about-text">
+                    <p>I am a dedicated CTO and Embedded Engineer with extensive experience in IoT development, 
+                    firmware engineering, and team leadership. Currently serving as CTO at Nepal Digital System Pvt. Ltd. 
+                    and working with Hypnotik Io and Fantom LED.</p>
+                    
+                    <p>My expertise spans across embedded systems, IoT platforms, mobile app development, 
+                    and cloud integration. I have successfully led teams in developing innovative solutions 
+                    for various industries including building management, agriculture, and smart home automation.</p>
+
+                    <p><strong>Personal Profile:</strong> Self-motivated, adaptable, and ambitious Electrical and Electronics
+                    Engineer with a strong drive for productivity, seeking to further my career in the IoT field.</p>
                 </div>
-                <div class="project-card">
-                    <h3>Task Manager App</h3>
-                    <p>A productivity app to manage daily tasks, built using React and Firebase.</p>
-                    <a href="#">View Project</a>
-                </div>
-                <div class="project-card">
-                    <h3>Portfolio Website</h3>
-                    <p>This very portfolio site, showcasing my work and skills.</p>
-                    <a href="#">View Project</a>
+                <div class="education-section">
+                    <h3 style="color: #667eea; margin-bottom: 1.5rem;">Education</h3>
+                    <div class="education-item">
+                        <div class="education-date">May 2022 - May 2024</div>
+                        <div class="education-degree">Master in Business Administration (MBA)</div>
+                        <div class="education-institution">KFA Business School, Mid-Baneshwor, Kathmandu, Nepal</div>
+                    </div>
+                    <div class="education-item">
+                        <div class="education-date">July 2012 - August 2016</div>
+                        <div class="education-degree">Bachelor in Electrical and Electronics Engineering (Communication)</div>
+                        <div class="education-institution">Kathmandu University, Dhulikhel, Bagmati, Nepal</div>
+                    </div>
+                    <div class="education-item">
+                        <div class="education-date">2010 - 2012</div>
+                        <div class="education-degree">10+2 in Science</div>
+                        <div class="education-institution">Caribbean College, Manbhawan, Lalitpur, Nepal</div>
+                    </div>
                 </div>
             </div>
         </section>
-        <section id="contact">
-            <h2 class="section-title">Contact</h2>
-            <p>
-                Feel free to reach out via email: <a href="mailto:krishna@example.com">krishna@example.com</a>
-            </p>
+
+        <!-- Skills Section -->
+        <section id="skills" class="skills-section">
+            <div class="skills-container">
+                <h2>Technical Skills</h2>
+                <div class="skills-grid">
+                    <div class="skill-category">
+                        <h3>Programming Languages</h3>
+                        <div class="skill-list">
+                            C, C++, Python, Dart, Assembly (8085, 8086), HTML, JavaScript, CSS, MATLAB, PHP, Java
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Communication Protocols</h3>
+                        <div class="skill-list">
+                            BLE, Matter, LWIP (TLS/SSL), MQTT, SNTP, SMTP, Modbus (RTU/TCP), LEAP, and more
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Hardware Interfaces</h3>
+                        <div class="skill-list">
+                            I2C, SPI, UART/USART, CAN, SDI, Wi-Fi, Bluetooth, Ethernet, ADC/DAC, PWM, SD, USB
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Chipsets/MCUs/Boards</h3>
+                        <div class="skill-list">
+                            Espressif (ESP8266, ESP32/S3/C3), Seeed Xiao nrf52840 BLE sense, Raspberry Pi, 
+                            Cortex-M4 (STM32), Cortex-M3 (LPC1857, LPC1778, LPC1768, LPC111x, EFM32G/GG), 
+                            Atmel's, PIC, AVR
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3>IoT Platforms</h3>
+                        <div class="skill-list">
+                            Ezlo IoT Core, AWS IoT Core, ThingsBoard, Upswift, RTS's proprietary platforms
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Hardware Design Tools</h3>
+                        <div class="skill-list">
+                            Altium, Eagle, Proteus, Multisim, KiCad, and other PCB design tools
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3>FPGA Development</h3>
+                        <div class="skill-list">
+                            Verilog in Xilinx (VHDL)
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3>SDK/Frameworks</h3>
+                        <div class="skill-list">
+                            ESP-IDF, Tasmota, WLED, ESPEasy, and custom firmware frameworks
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Additional Skills</h3>
+                        <div class="skill-list">
+                            Android, Flutter, Machine Learning, Design Patterns (Singleton, etc.), Agile methodology
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Project Management</h3>
+                        <div class="skill-list">
+                            Jira, ODOO/ERP, Trello, Google Sheets, and various project management tools
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Robotics & Training</h3>
+                        <div class="skill-list">
+                            Introduction to Robotics, Robotics Vision (Online Courses), Technical Training & Workshops
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience Section -->
+        <section id="experience" class="section">
+            <h2>Professional Experience</h2>
+            <div class="experience-timeline">
+                <div class="experience-item">
+                    <div class="experience-date">Apr 2022 - Present</div>
+                    <div class="experience-title">CTO [Full-Time]</div>
+                    <div class="experience-company">Nepal Digital System Pvt. Ltd.</div>
+                    <div class="experience-description">
+                        <strong>Our Clients:</strong>
+                        <ul class="responsibilities">
+                            <li>Hypnotik/Fantom (June 2024 to Present)</li>
+                            <li>Ezlo Innovation (Apr-2022 to Jan-2025)</li>
+                        </ul>
+                        <strong>Responsibilities:</strong>
+                        <ul class="responsibilities">
+                            <li>Leading teams (Cloud, Web, Mobile, and Firmware Development)</li>
+                            <li>Firmware Development for RS485 Distribution Box (JIECANG RS485 Shades)</li>
+                            <li>Hypnotik Leap Bridge development</li>
+                            <li>App Development for provisioning and controlling Hypnotik Leap Bridge</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="experience-item">
+                    <div class="experience-date">Feb 2025 - Present</div>
+                    <div class="experience-title">Embedded Engineer [Full-Time]</div>
+                    <div class="experience-company">Hypnotik Io & Fantom LED</div>
+                    <div class="experience-description">
+                        <strong>Responsibilities:</strong>
+                        <ul class="responsibilities">
+                            <li>Leading teams (Cloud, Web, Mobile, and Firmware Development)</li>
+                            <li>Firmware Development for RS485 Distribution Box and Hypnotik Leap Bridge</li>
+                            <li>App Development for provisioning and controlling systems</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="experience-item">
+                    <div class="experience-date">June 2024 - Jan 2025</div>
+                    <div class="experience-title">Embedded Engineer [Freelance/Part Time]</div>
+                    <div class="experience-company">Hypnotik Io & Fantom LED</div>
+                    <div class="experience-description">
+                        <strong>Tasks:</strong>
+                        <ul class="responsibilities">
+                            <li>Development of Hypnotik Leap Bridge (Lutron-Dooya Bridge)</li>
+                            <li>Feature addition: WLED OTA based on AWS-Jobs</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="experience-item">
+                    <div class="experience-date">Apr 2022 - Jan 2025</div>
+                    <div class="experience-title">Lead Firmware Engineer [Full-Time]</div>
+                    <div class="experience-company">Ezlo Innovations Inc. (Remote, USA)</div>
+                    <div class="experience-description">
+                        <strong>Responsibilities:</strong>
+                        <ul class="responsibilities">
+                            <li>Ezlo_Pi: Firmware framework development for ESP32-based IoT devices</li>
+                            <li>Open-source embedded framework supporting 60+ sensors/devices</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="experience-item">
+                    <div class="experience-date">Sep 2020 - April 2024</div>
+                    <div class="experience-title">Embedded Engineer [Consultant]</div>
+                    <div class="experience-company">Agrobotics Nepal Pvt. Ltd., Lalitpur, Nepal</div>
+                    <div class="experience-description">
+                        <strong>Responsibilities:</strong>
+                        <ul class="responsibilities">
+                            <li>Leading Hardware development</li>
+                            <li>IoT Platform Engineer (ThingsBoard)</li>
+                            <li>Firmware developer for Cattle monitoring BLE-sensor node, Soil sensor Nodes, BLE Gateway</li>
+                            <li>ThingsBoard IoT platform management</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="experience-item">
+                    <div class="experience-date">Aug 2019 - Feb 2022</div>
+                    <div class="experience-title">Team Lead, and Sr. Embedded Engineer [Full-Time]</div>
+                    <div class="experience-company">Bottle Technology Pvt. Ltd., Jhamsikhel, Lalitpur, Nepal</div>
+                    <div class="experience-description">
+                        <strong>Responsibilities:</strong>
+                        <ul class="responsibilities">
+                            <li>Team Lead (Hardware, App, Firmware, Cloud, and Web)</li>
+                            <li>Sr. Firmware Developer</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="experience-item">
+                    <div class="experience-date">Aug 2016 - Aug 2019</div>
+                    <div class="experience-title">Firmware Engineer [Full-Time]</div>
+                    <div class="experience-company">Real Time Solutions, Dhobighat, Lalitpur</div>
+                    <div class="experience-description">
+                        <strong>Responsibilities:</strong>
+                        <ul class="responsibilities">
+                            <li>Project manager (Building Management System)</li>
+                            <li>Firmware Engineer</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="experience-item">
+                    <div class="experience-date">Aug 1, 2018 - Aug 8, 2018</div>
+                    <div class="experience-title">Trainer [Contract]</div>
+                    <div class="experience-company">Cosmos College of Management and Technology, Talchikhel, Lalitpur, Nepal</div>
+                    <div class="experience-description">
+                        <strong>Responsibility:</strong>
+                        <ul class="responsibilities">
+                            <li>21-hour Training/Workshop on Raspberry Pi with Python, PHP, JavaScript, CSS, HTML</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="section">
+            <div class="projects-container">
+                <h2>Projects Portfolio</h2>
+                
+                <div class="project-categories">
+                    <div class="category-tabs">
+                        <button class="category-tab active" onclick="showCategory('featured')">Featured Projects</button>
+                        <button class="category-tab" onclick="showCategory('current')">Current Work</button>
+                        <button class="category-tab" onclick="showCategory('iot')">IoT & Embedded</button>
+                        <button class="category-tab" onclick="showCategory('automation')">Automation Systems</button>
+                        <button class="category-tab" onclick="showCategory('academic')">Academic Projects</button>
+                    </div>
+                </div>
+
+                <!-- Featured Projects -->
+                <div id="featured" class="projects-grid">
+                    <div class="project-card" onclick="openProjectModal('hypnotik-bridge')">
+                        <div class="project-image">[Hypnotik Bridge Demo Video]</div>
+                        <div class="project-content">
+                            <div class="project-title">Hypnotik-Leap-Bridge</div>
+                            <div class="project-description">
+                                Creates a bridge between Lutron-bridge and Dooya-bridge. Allows controlling Dooya shades using Lutron remotes via LEAP protocol. Includes Flutter app for provisioning and scene management.
+                            </div>
+                            <div class="project-tech">
+                                <span class="tech-tag">ESP32</span>
+                                <span class="tech-tag">LEAP Protocol</span>
+                                <span class="tech-tag">Flutter</span>
+                                <span class="tech-tag">C/C++</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card" onclick="openProjectModal('rs485-box')">
+                        <div class="project-image">[RS485 Hardware Demo]</div>
+                        <div class="project-content">
+                            <div class="project-title">Hypnotik RS485 Distribution Box</div>
+                            <div class="project-description">
+                                ESP32S3 Box with dual STM32 controllers. Each STM32 manages 5 UARTs to RS485 transceivers for JIECANG RS485 shade control.
+                            </div>
+                            <div class="project-tech">
+                                <span class="tech-tag">ESP32S3</span>
+                                <span class="tech-tag">STM32</span>
+                                <span class="tech-tag">RS485</span>
+                                <span class="tech-tag">UART</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card" onclick="openProjectModal('ezlo-pi')">
+                        <div class="project-image">[Ezlo_Pi Framework Architecture]</div>
+                        <div class="project-content">
+                            <div class="project-title">Ezlo_Pi Framework</div>
+                            <div class="project-description">
+                                Open source embedded framework for ESP32/S3/C3 based on ESP-IDF. Supports around 60 sensors/devices with comprehensive IoT capabilities.
+                            </div>
+                            <div class="project-tech">
+                                <span class="tech-tag">ESP-IDF</span>
+                                <span class="tech-tag">Open Source</span>
+                                <span class="tech-tag">IoT Framework</span>
+                                <span class="tech-tag">60+ Sensors</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card" onclick="openProjectModal('cattle-sensor')">
+                        <div class="project-image">[Cattle Monitoring System Demo]</div>
+                        <div class="project-content">
+                            <div class="project-title">Cattle Wearing Sensor</div>
+                            <div class="project-description">
+                                Seeed XIAO nrf52840 BLE sense module for livestock monitoring. Reads accelerometer data every 100ms, stores and transmits to BLE gateway every 5 minutes.
+                            </div>
+                            <div class="project-tech">
+                                <span class="tech-tag">BLE</span>
+                                <span class="tech-tag">nrf52840</span>
+                                <span class="tech-tag">ThingsBoard</span>
+                                <span class="tech-tag">Agriculture IoT</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Current Work Projects -->
+                <div id="current" class="projects-grid" style="display: none;">
+                    <div class="project-card" onclick="openProjectModal('wled-custom')">
+                        <div class="project-image">[WLED AWS Integration Demo]</div>
+                        <div class="project-content">
+                            <div class="project-title">WLED Customization</div>
+                            <div class="project-description">
+                                Added AWS-IoT support including OTA updates to WLED firmware for cloud-based LED control and management.
+                            </div>
+                            <div class="project-tech">
+                                <span class="tech-tag">WLED</span>
+                                <span class="tech-tag">AWS IoT</span>
+                                <span class="tech-tag">OTA Updates</span>
+                                <span class="tech-tag">LED Control</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card" onclick="openProjectModal('tasmota-custom')">
+                        <div class="project-image">[Tasmota Driver Demo]</div>
+                        <div class="project-content">
+                            <div class="project-title">Tasmota Firmware Customization</div>
+                            <div class="project-description">
+                                Added MCP39F511 driver to Tasmota firmware for enhanced power monitoring capabilities.
+                            </div>
+                            <div class="project-tech">
+                                <span class="tech-tag">Tasmota</span>
+                                <span class="tech-tag">MCP39F511</span>
+                                <span class="tech-tag">Power Monitoring</span>
+                                <span class="tech-tag">Driver Development</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card" onclick="openProjectModal('ble-wrapper')">
+                        <div class="project-image">[BLE Wrapper Library Demo]</div>
+                        <div class="project-content">
+                            <div class="project-title">BLE Wrapper</div>
+                            <div class="project-description">
+                                Written a BLE wrapper over esp-ble for easy integration of multiple services, characteristics and descriptors.
+                            </div>
+                            <div class="project-tech">
+                                <span class="tech-tag">BLE</span>
+                                <span class="tech-tag">ESP32</span>
+                                <span class="tech-tag">Library</span>
+                                <span class="tech-tag">API Wrapper</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- IoT & Embedded Projects -->
+                <div id="iot" class="projects-grid" style="display: none;">
+                    <div class="project-card" onclick="openProjectModal('switch-box')">
+                        <div class="project-image">[Switch Box Control Demo]</div>
+                        <div class="project-content">
+                            <div class="project-title">Switch-Box</div>
+                            <div class="project-description">
+                                Contains 10 relays that can be switched individually or all with a super switch. Designed for industrial automation applications.
+                            </div>
+                            <div class="project-tech">
+                                <span class="tech-tag">Relay Control</span>
+                                <span class="tech-tag">Industrial</span>
+                                <span class="tech-tag">Automation</span>
+                                <span class="tech-tag">ESP32</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card" onclick="openProjectModal('pos-system')">
+                        <div class="project-image">[POS System Demo]</div>
+                        <div class="project-content">
+                            <div class="project-title">POS System</div>
+                            <div class="project-description">
+                                Point of Sale machine incorporating contactless cards including NFC-Desfire EV1/EV2 support.
+                            </div>
+                            <div class="project-tech">
+                                <span class="tech-tag">NFC</span>
+                                <span class="tech-tag">Desfire EV1/EV2</span>
+                                <span class="tech-tag">POS</span>
+                                <span class="tech-tag">Payment System</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card" onclick="openProjectModal('iot-platform')">
+                        <div class="project-image">[IoT Platform Dashboard]</div>
+                        <div class="project-content">
+                            <div class="project-title">IoT Platform</div>
+                            <div class="project-description">
+                                Design own IoT platform, and installation and operation of ThingsBoard IoT platform for various applications.
+                            </div>
+                            <div class="project-tech">
+                                <span class="tech-tag">ThingsBoard</span>
+                                <span class="tech-tag">IoT Platform</span>
+                                <span class="tech-tag">Dashboard</span>
+                                <span class="tech-tag">Data Analytics</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card" onclick="openProjectModal('kiosk')">
+                        <div class="project-image">[Interactive Kiosk Demo]</div>
+                        <div class="project-content">
+                            <div class="project-title">Kiosk</div>
+                            <div class="project-description">
+                                Designed and developed interactive kiosk in a team for better user experience in public spaces.
+                            </div>
+                            <div class="project-tech">
+                                <span class="tech-tag">Interactive UI</span>
+                                <span class="tech-tag">Touch Screen</span>
+                                <span class="tech-tag">Public Interface</span>
+                                <span class="tech-tag">User Experience</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card" onclick="openProjectModal('smart-energy')">
+                        <div class="project-image">[Energy Meter Dashboard]</div>
+                        <div class="project-content">
+                            <div class="project-title">Smart Energy Meter</div>
+                            <div class="project-description">
+                                Posts Current, Voltage, Energy, Power over MQTT, TSS and SMTP protocols. Generates overcurrent and overvoltage alert messages.
+                            </div>
+                            <div class="project-tech">
+                                <span class="tech-tag">Energy Monitoring</span>
+                                <span class="tech-tag">MQTT</span>
+                                <span class="tech-tag">Alert System</span>
+                                <span class="tech-tag">Power Analysis</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card" onclick="openProjectModal('weather-display')">
+                        <div class="project-image">[Weather Station Display]</div>
+                        <div class="project-content">
+                            <div class="project-title">Weather Display</div>
+                            <div class="project-description">
+                                Shows real-time data from Tribhuvan International Airport - temperature, humidity, wind speed, rainfall, clock over SNTP.
+                            </div>
+                            <div class="project-tech">
+                                <span class="tech-tag">Weather Data</span>
+                                <span class="tech-tag">SNTP</span>
+                                <span class="tech-tag">Real-time</span>
+                                <span class="tech-tag">Display System</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Automation Systems -->
+                <div id="automation" class="projects-grid" style="display: none;">
+                    <div class="project-card" onclick="openProjectModal('bms')">
+                        <div class="project-image">[BMS SCADA Interface]</div>
+                        <div class="project-content">
+                            <div class="project-title">Building Management System</div>
+                            <div class="project-description">
+                                Complete BMS for controlling temperature, humidity, and CO2. Includes HMI Unit, SCADA software, damper controllers, and sensor network.
+                            </div>
+                            <div class="project-tech">
+                                <span class="tech-tag">SCADA</span>
+                                <span class="tech-tag">HMI</span>
+                                <span class="tech-tag">HVAC Control</span>
+                                <span class="tech-tag">Environmental Monitoring</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card" onclick="openProjectModal('infrastructure-monitoring')">
+                        <div class="project-image">[Infrastructure Sensors Network]</div>
+                        <div class="project-content">
+                            <div class="project-title">Infrastructure Monitoring</div>
+                            <div class="project-description">
+                                All-in-one architecture for multiple sensors: water spill/leakage, water flow, motion, door, temperature and humidity sensors.
+                            </div>
+                            <div class="project-tech">
+                                <span class="tech-tag">Multi-Sensor</span>
+                                <span class="tech-tag">Monitoring</span>
+                                <span class="tech-tag">Alert System</span>
+                                <span class="tech-tag">Infrastructure</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card" onclick="openProjectModal('audio-rtu')">
+                        <div class="project-image">[Audio RTU System]</div>
+                        <div class="project-content">
+                            <div class="project-title">Audio Remote Terminal Unit</div>
+                            <div class="project-description">
+                                Used as an early warning system over FTP, RTSP, and MQTT protocols for emergency communications.
+                            </div>
+                            <div class="project-tech">
+                                <span class="tech-tag">Audio Processing</span>
+                                <span class="tech-tag">FTP/RTSP</span>
+                                <span class="tech-tag">Early Warning</span>
+                                <span class="tech-tag">Emergency System</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card" onclick="openProjectModal('qms')">
+                        <div class="project-image">[Queue Management Demo]</div>
+                        <div class="project-content">
+                            <div class="project-title">Queue Management System</div>
+                            <div class="project-description">
+                                Complete QMS with token printer, QMS speaker for announcements, and PSIU for interfacing older displays with new architecture.
+                            </div>
+                            <div class="project-tech">
+                                <span class="tech-tag">Queue Management</span>
+                                <span class="tech-tag">Token System</span>
+                                <span class="tech-tag">Audio Announcements</span>
+                                <span class="tech-tag">Interface Unit</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card" onclick="openProjectModal('wcs')">
+                        <div class="project-image">[Wireless Calling System]</div>
+                        <div class="project-content">
+                            <div class="project-title">Wireless Calling System (WCS)</div>
+                            <div class="project-description">
+                                Wireless calling system for restaurants, hospitals, etc. over Wi-Fi and UDP protocol for instant communication.
+                            </div>
+                            <div class="project-tech">
+                                <span class="tech-tag">Wireless Communication</span>
+                                <span class="tech-tag">Wi-Fi</span>
+                                <span class="tech-tag">UDP Protocol</span>
+                                <span class="tech-tag">Service Industry</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card" onclick="openProjectModal('communication-module')">
+                        <div class="project-image">[Communication Module Hardware]</div>
+                        <div class="project-content">
+                            <div class="project-title">Communication Module</div>
+                            <div class="project-description">
+                                Uses iridium satellite modem, Dual SIM modem (3G-GSM-GPRS) and CDMA modem for data communications in remote areas.
+                            </div>
+                            <div class="project-tech">
+                                <span class="tech-tag">Satellite</span>
+                                <span class="tech-tag">3G/GSM/GPRS</span>
+                                <span class="tech-tag">CDMA</span>
+                                <span class="tech-tag">Remote Communication</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Academic Projects -->
+                <div id="academic" class="projects-grid" style="display: none;">
+                    <div class="project-card" onclick="openProjectModal('motion-vector')">
+                        <div class="project-image">[MATLAB Simulation Results]</div>
+                        <div class="project-content">
+                            <div class="project-title">Analysis of Motion Vector in Video Compression</div>
+                            <div class="project-description">
+                                MATLAB simulation project analyzing motion vectors in video compression algorithms (4th year project).
+                            </div>
+                            <div class="project-tech">
+                                <span class="tech-tag">MATLAB</span>
+                                <span class="tech-tag">Video Compression</span>
+                                <span class="tech-tag">Motion Analysis</span>
+                                <span class="tech-tag">Simulation</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card" onclick="openProjectModal('vehicle-tracking')">
+                        <div class="project-image">[GPS Tracking Demo]</div>
+                        <div class="project-content">
+                            <div class="project-title">Real-time Vehicle Tracking System</div>
+                            <div class="project-description">
+                                GPS and GPRS module-based vehicle tracking system for real-time location monitoring (4th year project).
+                            </div>
+                            <div class="project-tech">
+                                <span class="tech-tag">GPS</span>
+                                <span class="tech-tag">GPRS</span>
+                                <span class="tech-tag">Real-time Tracking</span>
+                                <span class="tech-tag">Location Services</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card" onclick="openProjectModal('quiz-buzzer')">
+                        <div class="project-image">[Quiz Buzzer System]</div>
+                        <div class="project-content">
+                            <div class="project-title">Quiz Buzzer for IT-Quiz 2016</div>
+                            <div class="project-description">
+                                Electronic quiz buzzer system designed for IT-Quiz competition 2016 (4th year project).
+                            </div>
+                            <div class="project-tech">
+                                <span class="tech-tag">Quiz System</span>
+                                <span class="tech-tag">Buzzer Interface</span>
+                                <span class="tech-tag">Competition</span>
+                                <span class="tech-tag">Interactive System</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card" onclick="openProjectModal('data-logging')">
+                        <div class="project-image">[Data Logger Hardware]</div>
+                        <div class="project-content">
+                            <div class="project-title">LHT Data-logging System</div>
+                            <div class="project-description">
+                                Luminance, Humidity and Temperature data-logging in micro-SD card (4th year project).
+                            </div>
+                            <div class="project-tech">
+                                <span class="tech-tag">Data Logging</span>
+                                <span class="tech-tag">Environmental Sensors</span>
+                                <span class="tech-tag">SD Card Storage</span>
+                                <span class="tech-tag">Embedded System</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card" onclick="openProjectModal('vending-machine')">
+                        <div class="project-image">[Vending Machine Prototype]</div>
+                        <div class="project-content">
+                            <div class="project-title">Vending Machine</div>
+                            <div class="project-description">
+                                Automated vending machine prototype with payment system and inventory management (3rd year project).
+                            </div>
+                            <div class="project-tech">
+                                <span class="tech-tag">Automation</span>
+                                <span class="tech-tag">Payment System</span>
+                                <span class="tech-tag">Inventory</span>
+                                <span class="tech-tag">Mechanical Control</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card" onclick="openProjectModal('audio-equalizer')">
+                        <div class="project-image">[Audio Equalizer Circuit]</div>
+                        <div class="project-content">
+                            <div class="project-title">3-band Audio Equalizer and Amplifier</div>
+                            <div class="project-description">
+                                Analog audio equalizer with 3-band frequency control and power amplifier (2nd year project).
+                            </div>
+                            <div class="project-tech">
+                                <span class="tech-tag">Analog Audio</span>
+                                <span class="tech-tag">Equalizer</span>
+                                <span class="tech-tag">Amplifier</span>
+                                <span class="tech-tag">Frequency Control</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="section">
+            <h2>Get In Touch</h2>
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h3 style="margin-bottom: 2rem; color: #667eea;">Contact Information</h3>
+                    <div class="contact-item">
+                        <i>📍</i>
+                        <span>Lalitpur, Nepal</span>
+                    </div>
+                    <div class="contact-item">
+                        <i>📱</i>
+                        <span>(+977) 9843108024, 9804540929</span>
+                    </div>
+                    <div class="contact-item">
+                        <i>✉️</i>
+                        <span>work.krishnasah@gmail.com</span>
+                    </div>
+                    
+                    <div class="contact-links">
+                        <a href="https://np.linkedin.com/in/krishna-kumar-sah-93a65a125" target="_blank">LinkedIn Profile</a>
+                        <a href="https://github.com/KrrishnaShah" target="_blank">GitHub: KrrishnaShah</a>
+                        <a href="https://github.com/work-krishna" target="_blank">GitHub: work-krishna</a>
+                        <a href="http://work-krishna.github.io" target="_blank">Personal Website</a>
+                    </div>
+                </div>
+                <form class="contact-form">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <input type="text" id="subject" name="subject" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Send Message</button>
+                </form>
+            </div>
         </section>
     </div>
-    <footer>
-        &copy; 2024 Krishna. All rights reserved.
-    </footer>
+
+    <!-- Project Modal -->
+    <div id="projectModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div id="modalContent">
+                <!-- Dynamic content will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Project details data structure
+        const projectDetails = {
+            'hypnotik-bridge': {
+                title: 'Hypnotik-Leap-Bridge',
+                description: `
+                    <h3>Project Overview</h3>
+                    <p>The Hypnotik Leap Bridge creates seamless integration between Lutron and Dooya smart home systems using the LEAP protocol. This innovative solution allows users to control Dooya shades using existing Lutron keypads.</p>
+                    
+                    <h3>Technical Implementation</h3>
+                    <ul>
+                        <li><strong>LEAP Protocol Integration:</strong> Implemented Lutron's LEAP protocol for secure communication</li>
+                        <li><strong>Bridge Architecture:</strong> ESP32-based hardware acting as protocol translator</li>
+                        <li><strong>Flutter Mobile App:</strong> Cross-platform app for device provisioning and scene management</li>
+                        <li><strong>Real-time Control:</strong> Instant response for shade control commands</li>
+                        <li><strong>Scene Management:</strong> Create and manage custom lighting scenes</li>
+                    </ul>
+
+                    <h3>Key Features</h3>
+                    <ul>
+                        <li>Seamless integration between Lutron keypads and Dooya shades</li>
+                        <li>Scene creation and management through mobile app</li>
+                        <li>Secure communication protocols</li>
+                        <li>Easy provisioning and setup process</li>
+                        <li>Cloud-based configuration management</li>
+                        <li>Real-time status monitoring</li>
+                    </ul>
+
+                    <h3>Technologies Used</h3>
+                    <p><strong>Hardware:</strong> ESP32, Custom PCB Design<br>
+                    <strong>Firmware:</strong> C/C++, ESP-IDF Framework<br>
+                    <strong>Mobile:</strong> Flutter (Dart)<br>
+                    <strong>Protocols:</strong> LEAP, Wi-Fi, BLE<br>
+                    <strong>Cloud:</strong> AWS IoT Core</p>
+                `,
+                media: [
+                    { type: 'video', title: 'System Demo', placeholder: 'Complete system demonstration video showing Lutron to Dooya integration' },
+                    { type: 'image', title: 'Hardware Design', placeholder: 'PCB design and hardware components' },
+                    { type: 'video', title: 'Flutter App Demo', placeholder: 'Mobile app provisioning and control demonstration' },
+                    { type: 'image', title: 'Installation Setup', placeholder: 'Field installation and configuration photos' }
+                ]
+            },
+            'rs485-box': {
+                title: 'Hypnotik RS485 Distribution Box',
+                description: `
+                    <h3>Project Overview</h3>
+                    <p>Advanced RS485 distribution system designed for controlling multiple JIECANG smart shades with precision and reliability. Features dual STM32 controllers managed by ESP32S3.</p>
+                    
+                    <h3>Technical Architecture</h3>
+                    <ul>
+                        <li><strong>ESP32S3 Main Controller:</strong> Central processing unit with Wi-Fi connectivity</li>
+                        <li><strong>Dual STM32 Controllers:</strong> Each managing 5 independent UART channels</li>
+                        <li><strong>10 RS485 Transceivers:</strong> Individual control for each shade</li>
+                        <li><strong>Robust Communication:</strong> Error detection and recovery mechanisms</li>
+                        <li><strong>Power Management:</strong> Efficient power distribution and protection</li>
+                    </ul>
+
+                    <h3>Key Specifications</h3>
+                    <ul>
+                        <li>Support for up to 10 individual shade controllers</li>
+                        <li>Simultaneous or individual shade control</li>
+                        <li>Real-time status monitoring</li>
+                        <li>Automatic fault detection and reporting</li>
+                        <li>Remote configuration and updates</li>
+                        <li>EMI protection and electrical isolation</li>
+                    </ul>
+
+                    <h3>Hardware Design</h3>
+                    <p>Custom PCB design with proper isolation, EMI protection, and robust power supply management. 
+                    Each RS485 channel is electrically isolated for maximum reliability and system protection.</p>
+                `,
+                media: [
+                    { type: 'image', title: 'PCB Layout', placeholder: 'Detailed PCB design and component layout' },
+                    { type: 'video', title: 'Hardware Testing', placeholder: 'System testing and validation procedures' },
+                    { type: 'image', title: 'Installation', placeholder: 'Field installation and wiring examples' },
+                    { type: 'video', title: 'Multi-shade Control', placeholder: 'Demonstration of controlling 10 shades simultaneously' }
+                ]
+            },
+            'ezlo-pi': {
+                title: 'Ezlo_Pi Framework',
+                description: `
+                    <h3>Project Overview</h3>
+                    <p>Open-source embedded framework designed for ESP32/S3/C3 platforms, supporting over 60 different sensors and devices in a unified IoT ecosystem. Available on GitHub as a community resource.</p>
+                    
+                    <h3>Framework Architecture</h3>
+                    <ul>
+                        <li><strong>Modular Design:</strong> Plugin-based architecture for easy sensor integration</li>
+                        <li><strong>Device Abstraction:</strong> Unified API for diverse hardware components</li>
+                        <li><strong>Cloud Integration:</strong> Built-in support for multiple IoT platforms</li>
+                        <li><strong>OTA Updates:</strong> Secure over-the-air firmware updates</li>
+                        <li><strong>Real-time Processing:</strong> Efficient data handling and analytics</li>
+                    </ul>
+
+                    <h3>Supported Devices & Sensors (60+)</h3>
+                    <ul>
+                        <li>Environmental sensors (temperature, humidity, pressure, air quality)</li>
+                        <li>Motion and proximity sensors</li>
+                        <li>Light and color sensors</li>
+                        <li>Audio and vibration sensors</li>
+                        <li>Communication modules (BLE, Wi-Fi, LoRa)</li>
+                        <li>Display and user interface components</li>
+                        <li>Power management and energy monitoring</li>
+                    </ul>
+
+                    <h3>Key Features</h3>
+                    <ul>
+                        <li>Comprehensive sensor driver library</li>
+                        <li>Built-in web configuration interface</li>
+                        <li>MQTT and HTTP communication protocols</li>
+                        <li>Energy-efficient operation modes</li>
+                        <li>Extensive documentation and examples</li>
+                    </ul>
+
+                    <h3>Open Source Impact</h3>
+                    <p>The framework has been adopted by the IoT community worldwide and serves as a foundation for numerous commercial and research projects.</p>
+                `,
+                media: [
+                    { type: 'image', title: 'Architecture Diagram', placeholder: 'System architecture and framework components' },
+                    { type: 'video', title: 'Quick Setup Demo', placeholder: 'Framework installation and configuration' },
+                    { type: 'image', title: 'Sensor Examples', placeholder: 'Various sensors integrated with the framework' },
+                    { type: 'video', title: 'Web Interface', placeholder: 'Built-in web configuration interface demonstration' }
+                ]
+            },
+            'cattle-sensor': {
+                title: 'Cattle Wearing Sensor',
+                description: `
+                    <h3>Project Overview</h3>
+                    <p>IoT-based livestock monitoring solution using wearable sensors to track cattle behavior and health indicators through advanced data analytics and BLE communication.</p>
+                    
+                    <h3>System Components</h3>
+                    <ul>
+                        <li><strong>Wearable Sensor:</strong> Seeed XIAO nrf52840 BLE with accelerometer</li>
+                        <li><strong>BLE Gateway:</strong> ESP32S3-based data collection hub</li>
+                        <li><strong>Cloud Platform:</strong> ThingsBoard for data processing and visualization</li>
+                        <li><strong>Mobile Interface:</strong> Real-time monitoring and alerts</li>
+                        <li><strong>Power Management:</strong> Extended battery life optimization</li>
+                    </ul>
+
+                    <h3>Data Collection & Analysis</h3>
+                    <ul>
+                        <li>100ms interval accelerometer sampling for precise movement tracking</li>
+                        <li>5-minute batch data transmission via BLE to conserve power</li>
+                        <li>Behavior pattern recognition algorithms</li>
+                        <li>Health anomaly detection and early warning systems</li>
+                        <li>Historical trend analysis and reporting</li>
+                    </ul>
+
+                    <h3>Key Features</h3>
+                    <ul>
+                        <li>Long battery life (6+ months operation)</li>
+                        <li>Waterproof and durable design for livestock environment</li>
+                        <li>Real-time health monitoring and alerts</li>
+                        <li>Automated veterinary alert system</li>
+                        <li>GPS location tracking integration</li>
+                        <li>Customizable behavior thresholds</li>
+                    </ul>
+
+                    <h3>Agricultural Impact</h3>
+                    <p>The system has improved livestock management efficiency by 40% and enabled early detection of health issues, significantly reducing veterinary costs and improving animal welfare.</p>
+                `,
+                media: [
+                    { type: 'image', title: 'Wearable Device', placeholder: 'Sensor hardware and waterproof enclosure design' },
+                    { type: 'video', title: 'Field Deployment', placeholder: 'Installation process and real-world usage on cattle' },
+                    { type: 'image', title: 'ThingsBoard Dashboard', placeholder: 'Data visualization and analytics dashboard' },
+                    { type: 'video', title: 'Behavior Analysis', placeholder: 'Real-time behavior pattern analysis demonstration' }
+                ]
+            },
+            // Additional project details would continue here...
+            'bms': {
+                title: 'Building Management System',
+                description: `
+                    <h3>Project Overview</h3>
+                    <p>Comprehensive building automation solution for monitoring and controlling environmental parameters including temperature, humidity, and CO2 levels across large commercial facilities.</p>
+                    
+                    <h3>System Architecture</h3>
+                    <ul>
+                        <li><strong>HMI Units:</strong> Touch-screen interfaces for local control and monitoring</li>
+                        <li><strong>SCADA Software:</strong> Centralized monitoring and control system</li>
+                        <li><strong>Sensor Network:</strong> Distributed environmental monitoring throughout building</li>
+                        <li><strong>Control Hardware:</strong> Relay and Triac controllers for HVAC systems</li>
+                        <li><strong>Communication Network:</strong> Robust networking for real-time data exchange</li>
+                    </ul>
+
+                    <h3>Key Components</h3>
+                    <ul>
+                        <li>High-precision temperature and humidity sensors (±0.1°C accuracy)</li>
+                        <li>CO2 monitoring with NDIR technology</li>
+                        <li>Air velocity sensors for HVAC optimization</li>
+                        <li>Automated damper controllers for airflow management</li>
+                        <li>Emergency override and safety systems</li>
+                        <li>Data logging and historical analysis</li>
+                    </ul>
+
+                    <h3>Control Features</h3>
+                    <ul>
+                        <li>Real-time environmental monitoring and alerts</li>
+                        <li>Automated HVAC control and optimization</li>
+                        <li>Energy usage tracking and reporting</li>
+                        <li>Predictive maintenance scheduling</li>
+                        <li>Emergency response protocols</li>
+                        <li>Remote access and mobile monitoring</li>
+                    </ul>
+
+                    <h3>Energy Efficiency Results</h3>
+                    <p>The system has achieved 25-30% energy savings in deployed buildings through intelligent automation, optimization algorithms, and predictive control strategies.</p>
+                `,
+                media: [
+                    { type: 'image', title: 'HMI Interface', placeholder: 'Touch-screen control panels and user interfaces' },
+                    { type: 'video', title: 'SCADA System', placeholder: 'Central monitoring system demonstration' },
+                    { type: 'image', title: 'Sensor Network', placeholder: 'Installed sensors and monitoring equipment' },
+                    { type: 'video', title: 'Automated Control', placeholder: 'HVAC automation and energy optimization in action' }
+                ]
+            }
+            // More projects would be added here following the same pattern...
+        };
+
+        // Navigation and UI functionality
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Scroll progress bar
+        window.addEventListener('scroll', () => {
+            const scrollTop = document.documentElement.scrollTop;
+            const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrollPercent = (scrollTop / scrollHeight) * 100;
+            document.getElementById('progressBar').style.width = scrollPercent + '%';
+        });
+
+        // Navbar background on scroll
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 100) {
+                navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+                navbar.style.boxShadow = '0 2px 20px rgba(0,0,0,0.1)';
+            } else {
+                navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+                navbar.style.boxShadow = 'none';
+            }
+        });
+
+        // Project category switching
+        function showCategory(category) {
+            // Hide all project grids
+            document.querySelectorAll('.projects-grid').forEach(grid => {
+                grid.style.display = 'none';
+            });
+            
+            // Show selected category
+            document.getElementById(category).style.display = 'grid';
+            
+            // Update active tab
+            document.querySelectorAll('.category-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            event.target.classList.add('active');
+        }
+
+        // Modal functionality
+        const modal = document.getElementById('projectModal');
+        const modalContent = document.getElementById('modalContent');
+        const closeBtn = document.getElementsByClassName('close')[0];
+
+        function openProjectModal(projectId) {
+            const project = projectDetails[projectId];
+            if (!project) {
+                modalContent.innerHTML = '<h2>Project details coming soon...</h2>';
+            } else {
+                modalContent.innerHTML = `
+                    <h2 class="modal-project-title">${project.title}</h2>
+                    <div>${project.description}</div>
+                    
+                    <h3 style="margin-top: 2rem; color: #667eea;">Project Media & Documentation</h3>
+                    <div class="modal-media-grid">
+                        ${project.media.map(item => `
+                            <div class="media-placeholder">
+                                <div style="text-align: center;">
+                                    <div style="font-weight: bold; margin-bottom: 0.5rem;">${item.title}</div>
+                                    <div style="font-size: 0.9rem; color: #667eea;">[${item.type.toUpperCase()}]</div>
+                                    <div style="font-size: 0.8rem; margin-top: 0.5rem; line-height: 1.4;">${item.placeholder}</div>
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+
+                    <div style="margin-top: 2rem; padding: 1rem; background: #f8f9fa; border-radius: 10px;">
+                        <h4 style="color: #667eea; margin-bottom: 1rem;">Project Status & Availability</h4>
+                        <p>✅ Successfully completed and deployed<br>
+                        📊 Performance metrics and case studies available<br>
+                        🔗 Code samples and technical documentation available<br>
+                        📞 Available for consultation and similar projects</p>
+                    </div>
+                `;
+            }
+
+            modal.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        closeBtn.onclick = function() {
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        // Contact form submission
+        document.querySelector('.contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your message! I will get back to you soon.');
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 0.6s ease forwards';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections and cards
+        document.querySelectorAll('.section, .project-card, .experience-item, .skill-category').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
 </body>
 </html>
