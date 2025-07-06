@@ -4,7 +4,48 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Krishna Kumar Sah - Embedded Engineer & IoT Specialist</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --primary-color: #4f46e5;
+            --secondary-color: #06b6d4;
+            --accent-color: #10b981;
+            --text-color: #f8fafc;
+            --text-secondary: #cbd5e1;
+            --text-muted: #94a3b8;
+            --bg-primary: #0f172a;
+            --bg-secondary: #1e293b;
+            --bg-card: #334155;
+            --border-color: #475569;
+            --shadow: rgba(0,0,0,0.25);
+            --shadow-hover: rgba(0,0,0,0.4);
+            --navbar-bg: rgba(15, 23, 42, 0.95);
+            --hero-bg: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+            --hero-text: #f8fafc;
+            --gradient-primary: linear-gradient(135deg, #4f46e5 0%, #06b6d4 100%);
+        }
+
+        [data-theme="light"] {
+            --primary-color: #4f46e5;
+            --secondary-color: #06b6d4;
+            --accent-color: #10b981;
+            --text-color: #1e293b;
+            --text-secondary: #475569;
+            --text-muted: #64748b;
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8fafc;
+            --bg-card: #ffffff;
+            --border-color: #e2e8f0;
+            --shadow: rgba(0,0,0,0.1);
+            --shadow-hover: rgba(0,0,0,0.15);
+            --navbar-bg: rgba(255, 255, 255, 0.95);
+            --hero-bg: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 50%, #cbd5e1 100%);
+            --hero-text: #1e293b;
+            --gradient-primary: linear-gradient(135deg, #4f46e5 0%, #06b6d4 100%);
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -12,11 +53,13 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
             line-height: 1.6;
-            color: #333;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: var(--text-color);
+            background: var(--bg-primary);
             overflow-x: hidden;
+            transition: all 0.3s ease;
+            font-weight: 400;
         }
 
         /* Navigation */
@@ -24,15 +67,16 @@
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
+            background: var(--navbar-bg);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-color);
             z-index: 1000;
-            padding: 1rem 0;
+            padding: 1.5rem 0;
             transition: all 0.3s ease;
         }
 
         .nav-container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
             display: flex;
             justify-content: space-between;
@@ -41,133 +85,314 @@
         }
 
         .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #667eea;
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.025em;
         }
 
         .nav-links {
             display: flex;
             list-style: none;
-            gap: 2rem;
+            gap: 3rem;
+            align-items: center;
         }
 
         .nav-links a {
             text-decoration: none;
-            color: #333;
+            color: var(--text-secondary);
             font-weight: 500;
-            transition: color 0.3s ease;
+            font-size: 0.95rem;
+            letter-spacing: 0.025em;
+            transition: all 0.3s ease;
+            position: relative;
         }
 
         .nav-links a:hover {
-            color: #667eea;
+            color: var(--text-color);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient-primary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .theme-toggle {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            padding: 0.7rem;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+        }
+
+        .theme-toggle:hover {
+            background: var(--bg-secondary);
+            color: var(--text-color);
+            border-color: var(--primary-color);
+            transform: translateY(-2px);
         }
 
         /* Hero Section */
         .hero {
-            height: 100vh;
+            min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            text-align: center;
-            color: white;
+            text-align: left;
+            color: var(--hero-text);
             position: relative;
+            background: var(--hero-bg);
+            padding: 0 2rem;
         }
 
         .hero-content {
-            max-width: 800px;
-            padding: 2rem;
+            max-width: 1400px;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
             animation: fadeInUp 1s ease;
         }
 
+        .hero-text {
+            padding: 2rem 0;
+        }
+
+        .hero-visual {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
         .profile-image {
-            width: 200px;
-            height: 200px;
-            border-radius: 50%;
-            border: 5px solid white;
-            margin: 0 auto 2rem;
-            background: #f0f0f0;
+            width: 400px;
+            height: 400px;
+            border-radius: 24px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 0.9rem;
-            color: #666;
             animation: float 3s ease-in-out infinite;
+            box-shadow: 0 20px 60px var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .profile-photo {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 24px;
+            transition: all 0.3s ease;
+            z-index: 2;
+            position: relative;
+            filter: brightness(0.85) contrast(1.1) saturate(0.9);
+        }
+
+        [data-theme="light"] .profile-photo {
+            filter: brightness(1) contrast(1) saturate(1);
+        }
+
+        .profile-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(79, 70, 229, 0.15), rgba(6, 182, 212, 0.15));
+            z-index: 3;
+            transition: opacity 0.3s ease;
+            border-radius: 24px;
+        }
+
+        .profile-image::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(15, 23, 42, 0.1), transparent, rgba(30, 41, 59, 0.1));
+            z-index: 4;
+            border-radius: 24px;
+            transition: opacity 0.3s ease;
+        }
+
+        .profile-image:hover::before {
+            opacity: 0.7;
+        }
+
+        .profile-image:hover::after {
+            opacity: 0.5;
+        }
+
+        [data-theme="light"] .profile-image::before {
+            background: linear-gradient(135deg, rgba(79, 70, 229, 0.05), rgba(6, 182, 212, 0.05));
+        }
+
+        [data-theme="light"] .profile-image::after {
+            background: linear-gradient(45deg, rgba(248, 250, 252, 0.1), transparent, rgba(226, 232, 240, 0.1));
+        }
+
+        .profile-image:hover .profile-photo {
+            transform: scale(1.02);
+            filter: brightness(0.8) contrast(1.15) saturate(1.1);
+        }
+
+        [data-theme="light"] .profile-image:hover .profile-photo {
+            filter: brightness(1.05) contrast(1.1) saturate(1.1);
         }
 
         .hero h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
+            font-size: 4rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+            letter-spacing: -0.05em;
             animation: slideInLeft 1s ease 0.2s both;
+        }
+
+        .hero h1 .gradient-text {
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .hero h2 {
             font-size: 1.5rem;
-            margin-bottom: 2rem;
-            opacity: 0.9;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: var(--text-secondary);
+            letter-spacing: 0.025em;
             animation: slideInRight 1s ease 0.4s both;
+        }
+
+        .hero-description {
+            font-size: 1.125rem;
+            color: var(--text-muted);
+            line-height: 1.7;
+            margin-bottom: 2.5rem;
+            max-width: 500px;
+            animation: fadeInUp 1s ease 0.6s both;
         }
 
         .contact-quick {
             display: flex;
-            justify-content: center;
             gap: 2rem;
-            margin-bottom: 2rem;
+            margin-bottom: 3rem;
             flex-wrap: wrap;
         }
 
         .contact-quick span {
-            font-size: 0.9rem;
-            opacity: 0.9;
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease 0.8s both;
         }
 
         .cta-button {
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
             padding: 1rem 2rem;
-            background: white;
-            color: #667eea;
+            font-weight: 600;
+            font-size: 1rem;
             text-decoration: none;
-            border-radius: 30px;
-            font-weight: bold;
+            border-radius: 12px;
             transition: all 0.3s ease;
-            animation: fadeInUp 1s ease 0.6s both;
-            margin: 0 1rem;
+            letter-spacing: 0.025em;
         }
 
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        .cta-button.primary {
+            background: var(--gradient-primary);
+            color: white;
+            box-shadow: 0 8px 25px rgba(79, 70, 229, 0.3);
         }
+
+        .cta-button.primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 35px rgba(79, 70, 229, 0.4);
+        }
+
+        .cta-button.secondary {
+            background: var(--bg-card);
+            color: var(--text-color);
+            border: 1px solid var(--border-color);
+        }
+
+        .cta-button.secondary:hover {
+            background: var(--bg-secondary);
+            border-color: var(--primary-color);
+            transform: translateY(-2px);
+        }
+
 
         /* Main Content */
         .main-content {
-            background: white;
+            background: var(--bg-primary);
             min-height: 100vh;
         }
 
         .section {
-            padding: 5rem 2rem;
-            max-width: 1200px;
+            padding: 6rem 2rem;
+            max-width: 1400px;
             margin: 0 auto;
         }
 
         .section h2 {
-            font-size: 2.5rem;
+            font-size: 3rem;
+            font-weight: 700;
             text-align: center;
-            margin-bottom: 3rem;
-            color: #333;
+            margin-bottom: 4rem;
+            color: var(--text-color);
             position: relative;
+            letter-spacing: -0.025em;
         }
 
         .section h2::after {
             content: '';
             position: absolute;
-            bottom: -10px;
+            bottom: -12px;
             left: 50%;
             transform: translateX(-50%);
-            width: 50px;
-            height: 3px;
-            background: #667eea;
+            width: 80px;
+            height: 4px;
+            background: var(--gradient-primary);
+            border-radius: 2px;
         }
 
         /* About Section */
@@ -184,7 +409,7 @@
         }
 
         .education-section {
-            background: #f8f9fa;
+            background: var(--bg-secondary);
             padding: 2rem;
             border-radius: 15px;
             margin-top: 2rem;
@@ -193,13 +418,13 @@
         .education-item {
             margin-bottom: 1.5rem;
             padding: 1rem;
-            background: white;
+            background: var(--card-bg);
             border-radius: 10px;
-            border-left: 4px solid #667eea;
+            border-left: 4px solid var(--primary-color);
         }
 
         .education-date {
-            color: #667eea;
+            color: var(--primary-color);
             font-weight: bold;
             font-size: 0.9rem;
         }
@@ -207,16 +432,17 @@
         .education-degree {
             font-weight: bold;
             margin: 0.5rem 0;
+            color: var(--text-color);
         }
 
         .education-institution {
-            color: #666;
+            color: var(--text-light);
         }
 
         /* Skills Section */
         .skills-section {
-            background: #f8f9fa;
-            padding: 5rem 2rem;
+            background: var(--bg-secondary);
+            padding: 6rem 2rem;
             margin: 0;
             max-width: 100%;
         }
@@ -234,91 +460,164 @@
         }
 
         .skill-category {
-            background: white;
-            padding: 2rem;
-            border-radius: 15px;
-            transition: transform 0.3s ease;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            background: var(--bg-card);
+            padding: 2.5rem;
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px var(--shadow);
         }
 
         .skill-category:hover {
-            transform: translateY(-5px);
+            transform: translateY(-8px);
+            box-shadow: 0 12px 35px var(--shadow-hover);
+            border-color: var(--primary-color);
         }
 
         .skill-category h3 {
-            color: #667eea;
-            margin-bottom: 1rem;
-            font-size: 1.2rem;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+            font-weight: 600;
         }
 
         .skill-list {
             line-height: 1.8;
-            color: #555;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
         }
 
         /* Experience Section */
         .experience-timeline {
             position: relative;
-            padding-left: 2rem;
+            padding-left: 0;
+            max-width: 1000px;
+            margin: 0 auto;
         }
 
         .experience-timeline::before {
             content: '';
             position: absolute;
-            left: 0;
+            left: 50%;
             top: 0;
             bottom: 0;
-            width: 2px;
-            background: #667eea;
+            width: 4px;
+            background: linear-gradient(to bottom, var(--primary-color), var(--secondary-color));
+            transform: translateX(-50%);
+            border-radius: 2px;
         }
 
         .experience-item {
             position: relative;
-            margin-bottom: 3rem;
-            background: white;
-            padding: 2rem;
-            border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
+            margin-bottom: 4rem;
+            background: var(--card-bg);
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 8px 25px var(--shadow);
+            transition: all 0.4s ease;
+            width: 45%;
+            border: 1px solid var(--border-color);
+        }
+
+        .experience-item:nth-child(odd) {
+            left: 0;
+            margin-right: auto;
+        }
+
+        .experience-item:nth-child(even) {
+            left: 0%;
+            margin-left: auto;
         }
 
         .experience-item:hover {
-            transform: translateX(10px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 15px 35px var(--shadow-hover);
+            border-color: var(--primary-color);
         }
 
         .experience-item::before {
             content: '';
             position: absolute;
-            left: -2.5rem;
-            top: 2rem;
-            width: 12px;
-            height: 12px;
-            background: #667eea;
+            width: 20px;
+            height: 20px;
+            background: var(--primary-color);
             border-radius: 50%;
-            border: 3px solid white;
+            border: 4px solid var(--bg-primary);
+            box-shadow: 0 2px 10px var(--shadow);
+            top: 2rem;
+            z-index: 10;
+        }
+
+        .experience-item:nth-child(odd)::before {
+            right: calc(-11.5% - 14px);
+        }
+
+        .experience-item:nth-child(even)::before {
+            left: calc(-11.5% - 14px);
+        }
+
+        .experience-item::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            top: 2.5rem;
+        }
+
+        .experience-item:nth-child(odd)::after {
+            right: -20px;
+            border-left: 20px solid var(--bg-card);
+            border-top: 15px solid transparent;
+            border-bottom: 15px solid transparent;
+        }
+
+        .experience-item:nth-child(even)::after {
+            left: -20px;
+            border-right: 20px solid var(--bg-card);
+            border-top: 15px solid transparent;
+            border-bottom: 15px solid transparent;
         }
 
         .experience-date {
-            color: #667eea;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
             font-weight: bold;
-            margin-bottom: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            display: inline-block;
+            margin-bottom: 1rem;
+            box-shadow: 0 2px 10px var(--shadow);
         }
 
         .experience-title {
-            font-size: 1.3rem;
+            font-size: 1.4rem;
             font-weight: bold;
             margin-bottom: 0.5rem;
+            color: var(--text-color);
+            line-height: 1.3;
         }
 
         .experience-company {
-            color: #666;
-            margin-bottom: 1rem;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
             font-style: italic;
+            font-size: 1.1rem;
+            font-weight: 500;
         }
 
         .experience-description {
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+
+        .experience-description strong {
+            color: var(--primary-color);
+            font-weight: 600;
         }
 
         .responsibilities {
@@ -327,16 +626,73 @@
         }
 
         .responsibilities li {
-            padding: 0.3rem 0;
-            padding-left: 1.5rem;
+            padding: 0.5rem 0;
+            padding-left: 2rem;
             position: relative;
+            line-height: 1.6;
+            transition: all 0.3s ease;
+        }
+
+        .responsibilities li:hover {
+            color: var(--primary-color);
+            transform: translateX(5px);
         }
 
         .responsibilities li::before {
-            content: "▶";
+            content: "●";
             position: absolute;
             left: 0;
-            color: #667eea;
+            color: var(--primary-color);
+            font-size: 1.2rem;
+            top: 0.5rem;
+        }
+
+        .timeline-year {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 15px var(--shadow);
+            margin-bottom: 2rem;
+            z-index: 10;
+        }
+
+        /* Mobile responsive timeline */
+        @media (max-width: 768px) {
+            .experience-timeline::before {
+                left: 30px;
+            }
+            
+            .experience-item {
+                width: 100%;
+                left: 0 !important;
+                margin-left: 60px;
+                margin-right: 0;
+            }
+            
+            .experience-item::before {
+                left: -70px !important;
+                right: auto !important;
+            }
+            
+            .experience-item::after {
+                left: -20px !important;
+                right: auto !important;
+                border-right: 20px solid var(--card-bg);
+                border-left: none;
+                border-top: 15px solid transparent;
+                border-bottom: 15px solid transparent;
+            }
+            
+            .timeline-year {
+                left: 30px;
+                transform: none;
+            }
         }
 
         /* Projects Section */
@@ -360,16 +716,17 @@
 
         .category-tab {
             padding: 0.8rem 1.5rem;
-            background: #f8f9fa;
+            background: var(--bg-secondary);
             border: none;
             border-radius: 25px;
             cursor: pointer;
             transition: all 0.3s ease;
             font-weight: 500;
+            color: var(--text-color);
         }
 
         .category-tab.active {
-            background: #667eea;
+            background: var(--primary-color);
             color: white;
         }
 
@@ -381,22 +738,22 @@
         }
 
         .project-card {
-            background: white;
+            background: var(--card-bg);
             border-radius: 15px;
             overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 5px 15px var(--shadow);
             transition: all 0.3s ease;
             cursor: pointer;
         }
 
         .project-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            box-shadow: 0 20px 40px var(--shadow-hover);
         }
 
         .project-image {
             height: 200px;
-            background: linear-gradient(45deg, #667eea, #764ba2);
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
             display: flex;
             align-items: center;
             justify-content: center;
@@ -414,11 +771,11 @@
             font-size: 1.3rem;
             font-weight: bold;
             margin-bottom: 1rem;
-            color: #333;
+            color: var(--text-color);
         }
 
         .project-description {
-            color: #666;
+            color: var(--text-light);
             margin-bottom: 1rem;
             line-height: 1.6;
         }
@@ -430,7 +787,7 @@
         }
 
         .tech-tag {
-            background: #667eea;
+            background: var(--primary-color);
             color: white;
             padding: 0.3rem 0.8rem;
             border-radius: 15px;
@@ -445,10 +802,100 @@
             margin-top: 3rem;
         }
 
+        .contact-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .map-container {
+            background: var(--bg-card);
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+            box-shadow: 0 8px 25px var(--shadow);
+            transition: all 0.3s ease;
+        }
+
+        .map-container:hover {
+            box-shadow: 0 12px 35px var(--shadow-hover);
+            border-color: var(--primary-color);
+        }
+
+        .map-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+            background: var(--bg-secondary);
+        }
+
+        .map-header h3 {
+            margin: 0;
+            color: var(--text-color);
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .map-header p {
+            margin: 0.5rem 0 0 0;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .map-iframe {
+            width: 100%;
+            height: 300px;
+            border: none;
+            filter: grayscale(0.2) contrast(1.1);
+            transition: filter 0.3s ease;
+        }
+
+        .map-iframe:hover {
+            filter: grayscale(0) contrast(1);
+        }
+
+        .location-details {
+            padding: 1.5rem;
+            background: var(--bg-card);
+        }
+
+        .location-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .location-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .location-icon {
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--primary-color);
+            border-radius: 50%;
+            font-size: 0.7rem;
+            color: white;
+        }
+
         .contact-info {
-            background: #f8f9fa;
-            padding: 2rem;
-            border-radius: 15px;
+            background: var(--bg-card);
+            padding: 2.5rem;
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 8px 25px var(--shadow);
+            transition: all 0.3s ease;
+        }
+
+        .contact-info:hover {
+            box-shadow: 0 12px 35px var(--shadow-hover);
+            border-color: var(--primary-color);
         }
 
         .contact-item {
@@ -456,12 +903,19 @@
             align-items: center;
             margin-bottom: 1.5rem;
             font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover {
+            color: var(--primary-color);
+            transform: translateX(5px);
         }
 
         .contact-item i {
             margin-right: 1rem;
-            color: #667eea;
+            color: var(--primary-color);
             width: 20px;
+            font-size: 1.1rem;
         }
 
         .contact-links {
@@ -472,7 +926,7 @@
             display: inline-block;
             margin: 0.5rem 1rem 0.5rem 0;
             padding: 0.5rem 1rem;
-            background: #667eea;
+            background: var(--primary-color);
             color: white;
             text-decoration: none;
             border-radius: 5px;
@@ -480,12 +934,23 @@
         }
 
         .contact-links a:hover {
-            background: #5a6fd8;
+            background: var(--secondary-color);
         }
 
         .contact-form {
             display: grid;
-            gap: 1rem;
+            gap: 1.5rem;
+            background: var(--bg-card);
+            padding: 2.5rem;
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 8px 25px var(--shadow);
+            transition: all 0.3s ease;
+        }
+
+        .contact-form:hover {
+            box-shadow: 0 12px 35px var(--shadow-hover);
+            border-color: var(--primary-color);
         }
 
         .form-group {
@@ -501,13 +966,15 @@
         .form-group input,
         .form-group textarea {
             padding: 1rem;
-            border: 1px solid #ddd;
+            border: 1px solid var(--border-color);
             border-radius: 5px;
             font-size: 1rem;
+            background: var(--card-bg);
+            color: var(--text-color);
         }
 
         .submit-btn {
-            background: #667eea;
+            background: var(--primary-color);
             color: white;
             padding: 1rem 2rem;
             border: none;
@@ -518,7 +985,7 @@
         }
 
         .submit-btn:hover {
-            background: #5a6fd8;
+            background: var(--secondary-color);
         }
 
         /* Modal for Projects */
@@ -535,7 +1002,7 @@
         }
 
         .modal-content {
-            background-color: white;
+            background-color: var(--card-bg);
             margin: 2% auto;
             padding: 2rem;
             border-radius: 15px;
@@ -548,7 +1015,7 @@
         }
 
         .close {
-            color: #aaa;
+            color: var(--text-muted);
             float: right;
             font-size: 28px;
             font-weight: bold;
@@ -559,12 +1026,12 @@
         }
 
         .close:hover {
-            color: #000;
+            color: var(--text-color);
         }
 
         .modal-project-title {
             font-size: 2rem;
-            color: #667eea;
+            color: var(--primary-color);
             margin-bottom: 1rem;
         }
 
@@ -577,13 +1044,13 @@
 
         .media-placeholder {
             height: 200px;
-            background: #f0f0f0;
+            background: var(--bg-secondary);
             border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #666;
-            border: 2px dashed #ccc;
+            color: var(--text-light);
+            border: 2px dashed var(--border-color);
             text-align: center;
             padding: 1rem;
         }
@@ -595,7 +1062,7 @@
             left: 0;
             width: 0%;
             height: 3px;
-            background: #667eea;
+            background: var(--primary-color);
             z-index: 1001;
             transition: width 0.1s ease;
         }
@@ -627,14 +1094,87 @@
         }
 
         /* Responsive Design */
+        @media (max-width: 1024px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+                text-align: center;
+            }
+            
+            .hero-text {
+                order: 2;
+            }
+            
+            .hero-visual {
+                order: 1;
+            }
+            
+            .profile-image {
+                width: 300px;
+                height: 300px;
+            }
+            
+            .profile-photo {
+                border-radius: 20px;
+            }
+        }
+        
         @media (max-width: 768px) {
             .nav-links { display: none; }
-            .hero h1 { font-size: 2rem; }
+            
+            .hero {
+                padding: 0 1rem;
+            }
+            
+            .hero h1 { 
+                font-size: 2.5rem;
+                line-height: 1.2;
+            }
+            
+            .hero h2 {
+                font-size: 1.25rem;
+            }
+            
+            .hero-description {
+                font-size: 1rem;
+            }
+            
+            .profile-image {
+                width: 250px;
+                height: 250px;
+            }
+            
+            .profile-photo {
+                border-radius: 16px;
+            }
+            
             .about-grid { grid-template-columns: 1fr; }
             .contact-grid { grid-template-columns: 1fr; }
+            .contact-section { grid-template-columns: 1fr; }
+            .map-iframe { height: 250px; }
             .projects-grid { grid-template-columns: 1fr; }
             .skills-grid { grid-template-columns: 1fr; }
-            .contact-quick { flex-direction: column; gap: 0.5rem; }
+            .contact-quick { 
+                flex-direction: column; 
+                gap: 0.5rem;
+                justify-content: center;
+            }
+            
+            .cta-buttons {
+                justify-content: center;
+            }
+            
+            .nav-container {
+                padding: 0 1rem;
+            }
+            
+            .section {
+                padding: 4rem 1rem;
+            }
+            
+            .section h2 {
+                font-size: 2.5rem;
+            }
         }
     </style>
 </head>
@@ -653,6 +1193,7 @@
                 <li><a href="#experience">Experience</a></li>
                 <li><a href="#projects">Projects</a></li>
                 <li><a href="#contact">Contact</a></li>
+                <li><button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">🌙</button></li>
             </ul>
         </div>
     </nav>
@@ -660,22 +1201,29 @@
     <!-- Hero Section -->
     <section id="home" class="hero">
         <div class="hero-content">
-            <div class="profile-image">
-                [Profile Photo Placeholder]
+            <div class="hero-text">
+                <div class="contact-quick">
+                    <span>📍 Lalitpur, Nepal</span>
+                    <span>📱 (+977) 9843108024</span>
+                    <span>✉️ work.krishnasah@gmail.com</span>
+                </div>
+                <h1>I'm <span class="gradient-text">Krishna Kumar Sah</span>,<br>A Product Designer<br><span style="color: var(--text-muted);">based in Nepal.</span></h1>
+                <h2>CTO | Embedded Engineer | IoT Specialist</h2>
+                <p class="hero-description">
+                    Self-motivated, adaptable, and ambitious Electrical and Electronics Engineer 
+                    with a strong drive for productivity and innovation in the IoT field. Leading teams 
+                    in developing cutting-edge embedded solutions and smart automation systems.
+                </p>
+                <div class="cta-buttons">
+                    <a href="#about" class="cta-button primary">📋 Explore My Work</a>
+                    <a href="#contact" class="cta-button secondary">📞 Get In Touch</a>
+                </div>
             </div>
-            <h1>Krishna Kumar Sah</h1>
-            <h2>CTO | Embedded Engineer | IoT Specialist</h2>
-            <div class="contact-quick">
-                <span>📍 Lalitpur, Nepal</span>
-                <span>📱 (+977) 9843108024</span>
-                <span>✉️ work.krishnasah@gmail.com</span>
+            <div class="hero-visual">
+                <div class="profile-image">
+                    <img src="krishna.jpg" alt="Krishna Kumar Sah - Professional Photo" class="profile-photo">
+                </div>
             </div>
-            <p style="font-size: 1.1rem; margin-bottom: 2rem; opacity: 0.9;">
-                Self-motivated, adaptable, and ambitious Electrical and Electronics Engineer 
-                with a strong drive for productivity, seeking to further my career in the IoT field.
-            </p>
-            <a href="#about" class="cta-button">Explore My Work</a>
-            <a href="#contact" class="cta-button">Get In Touch</a>
         </div>
     </section>
 
@@ -798,37 +1346,53 @@
         <!-- Experience Section -->
         <section id="experience" class="section">
             <h2>Professional Experience</h2>
+            <div class="timeline-year">2016 - Present</div>
+            <br><br><br>
             <div class="experience-timeline">
-                <div class="experience-item">
-                    <div class="experience-date">Apr 2022 - Present</div>
-                    <div class="experience-title">CTO [Full-Time]</div>
-                    <div class="experience-company">Nepal Digital System Pvt. Ltd.</div>
-                    <div class="experience-description">
-                        <strong>Our Clients:</strong>
-                        <ul class="responsibilities">
-                            <li>Hypnotik/Fantom (June 2024 to Present)</li>
-                            <li>Ezlo Innovation (Apr-2022 to Jan-2025)</li>
-                        </ul>
-                        <strong>Responsibilities:</strong>
-                        <ul class="responsibilities">
-                            <li>Leading teams (Cloud, Web, Mobile, and Firmware Development)</li>
-                            <li>Firmware Development for RS485 Distribution Box (JIECANG RS485 Shades)</li>
-                            <li>Hypnotik Leap Bridge development</li>
-                            <li>App Development for provisioning and controlling Hypnotik Leap Bridge</li>
-                        </ul>
-                    </div>
-                </div>
-
+               
                 <div class="experience-item">
                     <div class="experience-date">Feb 2025 - Present</div>
                     <div class="experience-title">Embedded Engineer [Full-Time]</div>
                     <div class="experience-company">Hypnotik Io & Fantom LED</div>
                     <div class="experience-description">
-                        <strong>Responsibilities:</strong>
+                        <strong>Current Focus:</strong>
                         <ul class="responsibilities">
-                            <li>Leading teams (Cloud, Web, Mobile, and Firmware Development)</li>
-                            <li>Firmware Development for RS485 Distribution Box and Hypnotik Leap Bridge</li>
-                            <li>App Development for provisioning and controlling systems</li>
+                            <li>Leading multi-disciplinary teams (Cloud, Web, Mobile, and Firmware)</li>
+                            <li>Advanced RS485 Distribution Box firmware development</li>
+                            <li>Hypnotik Leap Bridge system architecture and implementation</li>
+                            <li>Cross-platform app development for IoT device provisioning</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="experience-item">
+                    <div class="experience-date">Apr 2022 - Present</div>
+                    <div class="experience-title">CTO [Full-Time]</div>
+                    <div class="experience-company">Nepal Digital System Pvt. Ltd.</div>
+                    <div class="experience-description">
+                        <strong>Strategic Leadership:</strong>
+                        <ul class="responsibilities">
+                            <li>Technology strategy and roadmap development</li>
+                            <li>Cross-functional team leadership across multiple domains</li>
+                            <li>Client relationship management (Hypnotik/Fantom, Ezlo Innovation)</li>
+                            <li>Innovation in IoT and smart home automation solutions</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- <div class="timeline-year">2022 - 2024</div> -->
+
+                <div class="experience-item">
+                    <div class="experience-date">Apr 2022 - Jan 2025</div>
+                    <div class="experience-title">Lead Firmware Engineer [Full-Time]</div>
+                    <div class="experience-company">Ezlo Innovations Inc. (Remote, USA)</div>
+                    <div class="experience-description">
+                        <strong>Technical Leadership:</strong>
+                        <ul class="responsibilities">
+                            <li>Architected Ezlo_Pi framework for ESP32-based IoT ecosystem</li>
+                            <li>Developed open-source embedded platform supporting 60+ devices</li>
+                            <li>Implemented scalable firmware architecture for IoT applications</li>
+                            <li>Mentored junior developers and established coding standards</li>
                         </ul>
                     </div>
                 </div>
@@ -838,76 +1402,74 @@
                     <div class="experience-title">Embedded Engineer [Freelance/Part Time]</div>
                     <div class="experience-company">Hypnotik Io & Fantom LED</div>
                     <div class="experience-description">
-                        <strong>Tasks:</strong>
+                        <strong>Innovation Projects:</strong>
                         <ul class="responsibilities">
-                            <li>Development of Hypnotik Leap Bridge (Lutron-Dooya Bridge)</li>
-                            <li>Feature addition: WLED OTA based on AWS-Jobs</li>
+                            <li>Developed Hypnotik Leap Bridge (Lutron-Dooya integration)</li>
+                            <li>Enhanced WLED firmware with AWS-Jobs OTA capabilities</li>
+                            <li>Implemented secure communication protocols for smart home devices</li>
                         </ul>
                     </div>
                 </div>
 
-                <div class="experience-item">
-                    <div class="experience-date">Apr 2022 - Jan 2025</div>
-                    <div class="experience-title">Lead Firmware Engineer [Full-Time]</div>
-                    <div class="experience-company">Ezlo Innovations Inc. (Remote, USA)</div>
-                    <div class="experience-description">
-                        <strong>Responsibilities:</strong>
-                        <ul class="responsibilities">
-                            <li>Ezlo_Pi: Firmware framework development for ESP32-based IoT devices</li>
-                            <li>Open-source embedded framework supporting 60+ sensors/devices</li>
-                        </ul>
-                    </div>
-                </div>
+                <!-- <div class="timeline-year">2020 - 2022</div> -->
 
                 <div class="experience-item">
                     <div class="experience-date">Sep 2020 - April 2024</div>
                     <div class="experience-title">Embedded Engineer [Consultant]</div>
                     <div class="experience-company">Agrobotics Nepal Pvt. Ltd., Lalitpur, Nepal</div>
                     <div class="experience-description">
-                        <strong>Responsibilities:</strong>
+                        <strong>AgriTech Innovation:</strong>
                         <ul class="responsibilities">
-                            <li>Leading Hardware development</li>
-                            <li>IoT Platform Engineer (ThingsBoard)</li>
-                            <li>Firmware developer for Cattle monitoring BLE-sensor node, Soil sensor Nodes, BLE Gateway</li>
-                            <li>ThingsBoard IoT platform management</li>
+                            <li>Pioneered IoT solutions for precision agriculture</li>
+                            <li>Developed BLE-based livestock monitoring systems</li>
+                            <li>Designed soil sensor networks for crop optimization</li>
+                            <li>Implemented ThingsBoard IoT platform for agricultural data analytics</li>
                         </ul>
                     </div>
                 </div>
 
                 <div class="experience-item">
                     <div class="experience-date">Aug 2019 - Feb 2022</div>
-                    <div class="experience-title">Team Lead, and Sr. Embedded Engineer [Full-Time]</div>
+                    <div class="experience-title">Team Lead & Sr. Embedded Engineer [Full-Time]</div>
                     <div class="experience-company">Bottle Technology Pvt. Ltd., Jhamsikhel, Lalitpur, Nepal</div>
                     <div class="experience-description">
-                        <strong>Responsibilities:</strong>
+                        <strong>Leadership & Development:</strong>
                         <ul class="responsibilities">
-                            <li>Team Lead (Hardware, App, Firmware, Cloud, and Web)</li>
-                            <li>Sr. Firmware Developer</li>
+                            <li>Led cross-functional teams in hardware, software, and cloud development</li>
+                            <li>Established development processes and quality standards</li>
+                            <li>Delivered enterprise-grade embedded solutions</li>
+                            <li>Mentored junior engineers and fostered technical excellence</li>
                         </ul>
                     </div>
                 </div>
+
+                <!-- <div class="timeline-year">2016 - 2020</div> -->
 
                 <div class="experience-item">
                     <div class="experience-date">Aug 2016 - Aug 2019</div>
                     <div class="experience-title">Firmware Engineer [Full-Time]</div>
                     <div class="experience-company">Real Time Solutions, Dhobighat, Lalitpur</div>
                     <div class="experience-description">
-                        <strong>Responsibilities:</strong>
+                        <strong>Foundation & Growth:</strong>
                         <ul class="responsibilities">
-                            <li>Project manager (Building Management System)</li>
-                            <li>Firmware Engineer</li>
+                            <li>Managed Building Management System projects end-to-end</li>
+                            <li>Developed expertise in industrial automation and control systems</li>
+                            <li>Delivered critical infrastructure solutions for commercial buildings</li>
+                            <li>Built strong foundation in embedded systems and real-time programming</li>
                         </ul>
                     </div>
                 </div>
 
                 <div class="experience-item">
                     <div class="experience-date">Aug 1, 2018 - Aug 8, 2018</div>
-                    <div class="experience-title">Trainer [Contract]</div>
+                    <div class="experience-title">Technical Trainer [Contract]</div>
                     <div class="experience-company">Cosmos College of Management and Technology, Talchikhel, Lalitpur, Nepal</div>
                     <div class="experience-description">
-                        <strong>Responsibility:</strong>
+                        <strong>Knowledge Sharing:</strong>
                         <ul class="responsibilities">
-                            <li>21-hour Training/Workshop on Raspberry Pi with Python, PHP, JavaScript, CSS, HTML</li>
+                            <li>Delivered intensive 21-hour workshop on Raspberry Pi development</li>
+                            <li>Covered full-stack development: Python, PHP, JavaScript, CSS, HTML</li>
+                            <li>Mentored aspiring engineers in embedded systems and web technologies</li>
                         </ul>
                     </div>
                 </div>
@@ -998,50 +1560,34 @@
 
                 <!-- Current Work Projects -->
                 <div id="current" class="projects-grid" style="display: none;">
-                    <div class="project-card" onclick="openProjectModal('wled-custom')">
-                        <div class="project-image">[WLED AWS Integration Demo]</div>
+                    <div class="project-card" onclick="openProjectModal('current-hypnotik')">
+                        <div class="project-image">[Hypnotik Current Projects Demo]</div>
                         <div class="project-content">
-                            <div class="project-title">WLED Customization</div>
+                            <div class="project-title">Hypnotik IoT Solutions [2025-Present]</div>
                             <div class="project-description">
-                                Added AWS-IoT support including OTA updates to WLED firmware for cloud-based LED control and management.
+                                Leading development of advanced RS485 Distribution Box firmware and Hypnotik Leap Bridge system architecture for smart home automation.
                             </div>
                             <div class="project-tech">
-                                <span class="tech-tag">WLED</span>
-                                <span class="tech-tag">AWS IoT</span>
-                                <span class="tech-tag">OTA Updates</span>
-                                <span class="tech-tag">LED Control</span>
+                                <span class="tech-tag">ESP32S3</span>
+                                <span class="tech-tag">RS485</span>
+                                <span class="tech-tag">LEAP Protocol</span>
+                                <span class="tech-tag">IoT Systems</span>
                             </div>
                         </div>
                     </div>
 
-                    <div class="project-card" onclick="openProjectModal('tasmota-custom')">
-                        <div class="project-image">[Tasmota Driver Demo]</div>
+                    <div class="project-card" onclick="openProjectModal('current-cto')">
+                        <div class="project-image">[CTO Leadership Dashboard]</div>
                         <div class="project-content">
-                            <div class="project-title">Tasmota Firmware Customization</div>
+                            <div class="project-title">CTO Strategic Leadership [2022-Present]</div>
                             <div class="project-description">
-                                Added MCP39F511 driver to Tasmota firmware for enhanced power monitoring capabilities.
+                                Technology strategy and roadmap development, leading cross-functional teams across Cloud, Web, Mobile, and Firmware development domains.
                             </div>
                             <div class="project-tech">
-                                <span class="tech-tag">Tasmota</span>
-                                <span class="tech-tag">MCP39F511</span>
-                                <span class="tech-tag">Power Monitoring</span>
-                                <span class="tech-tag">Driver Development</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="project-card" onclick="openProjectModal('ble-wrapper')">
-                        <div class="project-image">[BLE Wrapper Library Demo]</div>
-                        <div class="project-content">
-                            <div class="project-title">BLE Wrapper</div>
-                            <div class="project-description">
-                                Written a BLE wrapper over esp-ble for easy integration of multiple services, characteristics and descriptors.
-                            </div>
-                            <div class="project-tech">
-                                <span class="tech-tag">BLE</span>
-                                <span class="tech-tag">ESP32</span>
-                                <span class="tech-tag">Library</span>
-                                <span class="tech-tag">API Wrapper</span>
+                                <span class="tech-tag">Technology Strategy</span>
+                                <span class="tech-tag">Team Leadership</span>
+                                <span class="tech-tag">IoT Innovation</span>
+                                <span class="tech-tag">Client Management</span>
                             </div>
                         </div>
                     </div>
@@ -1349,9 +1895,9 @@
         <!-- Contact Section -->
         <section id="contact" class="section">
             <h2>Get In Touch</h2>
-            <div class="contact-grid">
+            <div class="contact-section">
                 <div class="contact-info">
-                    <h3 style="margin-bottom: 2rem; color: #667eea;">Contact Information</h3>
+                    <h3 style="margin-bottom: 2rem; color: var(--primary-color);">Contact Information</h3>
                     <div class="contact-item">
                         <i>📍</i>
                         <span>Lalitpur, Nepal</span>
@@ -1372,7 +1918,38 @@
                         <a href="http://work-krishna.github.io" target="_blank">Personal Website</a>
                     </div>
                 </div>
+                
+                <div class="map-container">
+                    <div class="map-header">
+                        <h3>🗺️ My Location</h3>
+                        <p>Lalitpur, Bagmati Province, Nepal</p>
+                    </div>
+                    <iframe 
+                        class="map-iframe"
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d56516.27440465446!2d85.26493!3d27.6766!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb19df0c9feccd%3A0x8fb60bfeae6af4b1!2sLalitpur%2C%20Nepal!5e0!3m2!1sen!2s!4v1641234567890!5m2!1sen!2s"
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade"
+                        title="Lalitpur, Nepal Location">
+                    </iframe>
+                    <div class="location-details">
+                        <div class="location-item">
+                            <div class="location-icon">🏢</div>
+                            <span>Lalitpur Metropolitan City</span>
+                        </div>
+                        <div class="location-item">
+                            <div class="location-icon">🌍</div>
+                            <span>Bagmati Province, Nepal</span>
+                        </div>
+                        <div class="location-item">
+                            <div class="location-icon">🕰</div>
+                            <span>NPT (UTC+5:45)</span>
+                        </div>
+                    </div>
+                </div>
+                
                 <form class="contact-form">
+                    <h3 style="margin-bottom: 1.5rem; color: var(--primary-color);">Send Message</h3>
                     <div class="form-group">
                         <label for="name">Name</label>
                         <input type="text" id="name" name="name" required>
@@ -1572,6 +2149,85 @@
                     { type: 'video', title: 'Behavior Analysis', placeholder: 'Real-time behavior pattern analysis demonstration' }
                 ]
             },
+            'current-hypnotik': {
+                title: 'Hypnotik IoT Solutions [2025-Present]',
+                description: `
+                    <h3>Current Position Overview</h3>
+                    <p>Currently serving as Embedded Engineer (Full-Time) at Hypnotik Io & Fantom LED since February 2025, leading multi-disciplinary teams and spearheading advanced IoT development projects.</p>
+                    
+                    <h3>Current Projects & Responsibilities</h3>
+                    <ul>
+                        <li><strong>RS485 Distribution Box:</strong> Advanced firmware development for ESP32S3-based system with dual STM32 controllers</li>
+                        <li><strong>Hypnotik Leap Bridge:</strong> System architecture and implementation for smart home automation integration</li>
+                        <li><strong>Team Leadership:</strong> Leading Cloud, Web, Mobile, and Firmware development teams</li>
+                        <li><strong>IoT Device Provisioning:</strong> Cross-platform app development for seamless device setup</li>
+                        <li><strong>Smart Home Integration:</strong> Developing solutions for automated lighting and shade control</li>
+                    </ul>
+
+                    <h3>Technologies in Use</h3>
+                    <ul>
+                        <li>ESP32S3, STM32 microcontrollers for embedded development</li>
+                        <li>RS485 communication protocols for industrial-grade reliability</li>
+                        <li>Flutter for cross-platform mobile applications</li>
+                        <li>LEAP protocol implementation for smart home integration</li>
+                        <li>AWS IoT Core for cloud connectivity and device management</li>
+                        <li>Real-time systems programming and multi-threaded architectures</li>
+                    </ul>
+
+                    <h3>Current Impact</h3>
+                    <p>Leading innovation in smart home automation with focus on seamless integration between different IoT ecosystems, ensuring reliability and scalability in commercial deployments.</p>
+                `,
+                media: [
+                    { type: 'video', title: 'Current Development Demo', placeholder: 'Latest firmware development and testing procedures' },
+                    { type: 'image', title: 'Team Collaboration', placeholder: 'Cross-functional team meetings and project planning sessions' },
+                    { type: 'video', title: 'IoT Integration Demo', placeholder: 'Real-time demonstration of smart home system integration' },
+                    { type: 'image', title: 'Hardware Prototypes', placeholder: 'Current hardware prototypes and development boards' }
+                ]
+            },
+            'current-cto': {
+                title: 'CTO Strategic Leadership [2022-Present]',
+                description: `
+                    <h3>Current Position Overview</h3>
+                    <p>Serving as Chief Technology Officer at Nepal Digital System Pvt. Ltd. since April 2022, providing strategic technology leadership and driving innovation in IoT and smart automation solutions.</p>
+                    
+                    <h3>Strategic Responsibilities</h3>
+                    <ul>
+                        <li><strong>Technology Strategy:</strong> Developing and executing comprehensive technology roadmaps</li>
+                        <li><strong>Team Leadership:</strong> Managing cross-functional teams across multiple technology domains</li>
+                        <li><strong>Client Relationships:</strong> Strategic partnerships with Hypnotik/Fantom and Ezlo Innovation</li>
+                        <li><strong>Innovation Drive:</strong> Spearheading R&D initiatives in IoT and smart home automation</li>
+                        <li><strong>Technical Vision:</strong> Defining architecture standards and development practices</li>
+                    </ul>
+
+                    <h3>Current Focus Areas</h3>
+                    <ul>
+                        <li>IoT ecosystem development and platform integration</li>
+                        <li>Smart home automation and building management systems</li>
+                        <li>Cloud-native architectures and edge computing solutions</li>
+                        <li>Embedded systems optimization and real-time processing</li>
+                        <li>Team mentorship and technical capability building</li>
+                        <li>Strategic technology partnerships and vendor relationships</li>
+                    </ul>
+
+                    <h3>Leadership Impact</h3>
+                    <ul>
+                        <li>Successfully scaled engineering teams across multiple projects</li>
+                        <li>Established robust development processes and quality standards</li>
+                        <li>Drove adoption of modern development methodologies</li>
+                        <li>Built strategic partnerships with major IoT platform providers</li>
+                        <li>Delivered multiple successful client projects on time and within budget</li>
+                    </ul>
+
+                    <h3>Current Achievements</h3>
+                    <p>Under my leadership, the company has successfully delivered innovative IoT solutions, established strong client relationships, and built a reputation for technical excellence in the embedded systems and smart automation space.</p>
+                `,
+                media: [
+                    { type: 'image', title: 'Strategic Planning', placeholder: 'Technology roadmap and strategic planning sessions' },
+                    { type: 'video', title: 'Team Leadership', placeholder: 'Cross-functional team meetings and technical discussions' },
+                    { type: 'image', title: 'Client Presentations', placeholder: 'Strategic presentations to key clients and stakeholders' },
+                    { type: 'video', title: 'Innovation Showcase', placeholder: 'Demonstration of latest IoT innovations and solutions' }
+                ]
+            },
             // Additional project details would continue here...
             'bms': {
                 title: 'Building Management System',
@@ -1639,14 +2295,65 @@
             document.getElementById('progressBar').style.width = scrollPercent + '%';
         });
 
+        // Theme toggle functionality
+        function toggleTheme() {
+            const body = document.body;
+            const themeToggle = document.querySelector('.theme-toggle');
+            const currentTheme = body.getAttribute('data-theme');
+            
+            if (currentTheme === 'dark') {
+                body.removeAttribute('data-theme');
+                themeToggle.innerHTML = '🌙';
+                localStorage.setItem('theme', 'light');
+            } else {
+                body.setAttribute('data-theme', 'dark');
+                themeToggle.innerHTML = '☀️';
+                localStorage.setItem('theme', 'dark');
+            }
+        }
+
+        // Load saved theme or default to light
+        function loadTheme() {
+            const savedTheme = localStorage.getItem('theme');
+            const themeToggle = document.querySelector('.theme-toggle');
+            
+            if (savedTheme === 'dark') {
+                document.body.setAttribute('data-theme', 'dark');
+                themeToggle.innerHTML = '☀️';
+            } else {
+                themeToggle.innerHTML = '🌙';
+            }
+        }
+
+        // Load theme when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            loadTheme();
+            // Set default theme to dark
+            if (!localStorage.getItem('theme')) {
+                document.body.setAttribute('data-theme', 'dark');
+                document.querySelector('.theme-toggle').innerHTML = '☀️';
+                localStorage.setItem('theme', 'dark');
+            }
+        });
+
         // Navbar background on scroll
         window.addEventListener('scroll', () => {
             const navbar = document.getElementById('navbar');
+            const isDark = document.body.getAttribute('data-theme') === 'dark';
+            
             if (window.scrollY > 100) {
-                navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+                if (isDark) {
+                    navbar.style.background = 'rgba(45, 45, 45, 0.98)';
+                } else {
+                    navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+                }
                 navbar.style.boxShadow = '0 2px 20px rgba(0,0,0,0.1)';
             } else {
-                navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+                if (isDark) {
+                    navbar.style.background = 'rgba(45, 45, 45, 0.95)';
+                } else {
+                    navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+                }
                 navbar.style.boxShadow = 'none';
             }
         });
@@ -1695,8 +2402,8 @@
                         `).join('')}
                     </div>
 
-                    <div style="margin-top: 2rem; padding: 1rem; background: #f8f9fa; border-radius: 10px;">
-                        <h4 style="color: #667eea; margin-bottom: 1rem;">Project Status & Availability</h4>
+                    <div style="margin-top: 2rem; padding: 1rem; background: var(--bg-secondary); border-radius: 10px;">
+                        <h4 style="color: var(--primary-color); margin-bottom: 1rem;">Project Status & Availability</h4>
                         <p>✅ Successfully completed and deployed<br>
                         📊 Performance metrics and case studies available<br>
                         🔗 Code samples and technical documentation available<br>
